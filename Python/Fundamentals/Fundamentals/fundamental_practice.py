@@ -288,4 +288,61 @@ print(len(x))
 # output would look something like: ("dog", "chien", "perro")
 
 
+"""
+Dictionaries | Each Key in a dictionary must be unique
+"""
+
+# Example
+weekend = {"Sun": "Sunday", "Sat": "Saturday"} #literal notation
+capitals = {} #create an empty dictionary then add values
+capitals["svk"] = "Bratislava"
+capitals["deu"] = "Berlin"
+capitals["dnk"] = "Copenhagen"
+
+print(weekend["Sun"])
+print(capitals["svk"])
+
+# Removing values
+
+value_removed = capitals.pop('svk') # will remove the key 'svk' and return it's value
+del capitals['dnk'] # will delete the key, and not return anything
+
+# Nested Dictionaries
+
+#context = {
+#    'questions': [
+#        { 'id': 1, 'content': 'Why is there a light in the fridge and not in the freezer?'},
+#        { 'id': 2, 'content': 'Why don\'t sheep shrink when it rains?'},
+#        { 'id': 3, 'content': 'Why are they called apartments when they are all stuck together?'},
+#        { 'id': 4, 'content': 'Why do cars drive on the parkway and park on the driveway?'}
+#    ]
+#}
+
+"""
+Conditionals
+"""
+
+# Examples
+
+    x = 12
+    if x > 50:
+        print("bigger than 50")
+    else:
+        print("smaller than 50")
+    # because x is not greater than 50, the second print statement is the only one that will execute
+    
+    x = 55
+    if x > 10:
+        print("bigger than 10")
+    elif x > 50:
+        print("bigger than 50")
+    else:
+        print("smaller than 10")
+    # even though x is greater than 10 and 50, the first true statement is the only one that will execute, so we will only see 'bigger than 10'
+    
+    if x < 10:
+        print("smaller than 10")
+    # nothing happens, because the statement is false   
+
+
 
