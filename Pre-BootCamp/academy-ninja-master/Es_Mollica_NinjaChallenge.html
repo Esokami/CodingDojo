@@ -1,0 +1,88 @@
+<html>
+<body>
+	<div id='background'>
+        <div id='character' style='position:absolute; top:100px; left:450px; background-image: url("img/down1.png"); width:59px; height:86px;'></div>
+    </div>
+    <script type="text/javascript">
+	    var leftValue = 450;
+		var topValue = 100;
+		var direction = 'down1'; 
+		var imageNumber = 1; 
+
+    	function update()
+		{
+			document.getElementById("character").style.left = leftValue+"px";
+			document.getElementById("character").style.top = topValue+"px";
+			document.getElementById("character").style.backgroundImage = "url('img/"+direction+".png')";
+    	}
+
+    	document.onkeydown = function(e)
+		{
+    		console.log(e);
+
+    		if(e.keyCode == 37 && leftValue > 0)
+			{ // LEFT
+    			leftValue = leftValue - 10;
+				if(imageNumber == 1){
+					direction = 'left1';
+					imageNumber = 2; 
+				} 
+				else if (imageNumber == 2){
+					direction = 'left2'
+					imageNumber = 1; 
+				}
+    		}
+    		else if (e.keyCode == 39 && leftValue < 500) 
+			{ // RIGHT
+    			leftValue = leftValue + 10;   
+				if(imageNumber == 1){
+					direction = 'right1';
+					imageNumber = 2; 
+				} 
+				else if (imageNumber == 2){
+					direction = 'right2'
+					imageNumber = 1; 
+				} 		
+    		}
+    		else if (e.keyCode == 40 && topValue < 500) 
+			{ // DOWN
+				topValue = topValue + 10;
+				if(imageNumber == 1){
+					direction = 'down1';
+					imageNumber = 2; 
+				} 
+				else if (imageNumber == 2){
+					direction = 'down2'
+					imageNumber = 1; 
+				}
+    		}
+    		else if(e.keyCode == 38 && topValue > 0) //UP
+			{
+				topValue = topValue - 10;
+				if(imageNumber == 1){
+					direction = 'top1';
+					imageNumber = 2; 
+				} 
+				else if (imageNumber == 2){
+					direction = '2'
+					imageNumber = 1; 
+				}
+			}
+    		update();
+    	}
+    </script>
+	<script>
+		function noReg(arr){
+			arr = [];
+
+			for (i = 0; i < arr.length; i++){
+				if (arr[i] < 0){
+					i = 0;
+				}
+				console.log(arr[1,5,10,-2])
+				return arr; 
+			}
+		}
+	</script>
+</body>
+</html>
