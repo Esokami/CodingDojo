@@ -12,22 +12,57 @@ countdown(5)
 2: Print and Return - Create a function that will receive a list with two numbers. Print the first value and return the second.
 Example: print_and_return([1,2]) should print 1 and return 2
 """
-
-
+new_list = []
+def print_and_return(new_list):
+    for i in range(len(new_list)):
+        print(new_list[0])
+        return new_list[1]
+print_and_return([1,2])
+print(print_and_return([7,14]))
 
 """
 3:  First Plus Length - Create a function that accepts a list and returns the sum of the first value in the list plus the list's length.
 Example: first_plus_length([1,2,3,4,5]) should return 6 (first value: 1 + length: 5)
 """
 
+def first_plus_length(new_list):
+    for i in range(len(new_list)):
+        first = new_list[0]
+        length = len(new_list)
+        sum = first + length
+        return sum
+print(first_plus_length([2,4,6]))
+
 """
-4: Values Greater than Second - Write a function that accepts a list and creates a new list containing only the values from the original list that are greater than its 2nd value. Print how many values this is and then return the new list. If the list has less than 2 elements, have the function return False
+4: Values Greater than Second - Write a function that accepts a list and creates a new list containing only the values from the original list that are 
+greater than its 2nd value. Print how many values this is and then return the new list. If the list has less than 2 elements, have the function return False
 Example: values_greater_than_second([5,2,3,2,1,4]) should print 3 and return [5,3,4]
 Example: values_greater_than_second([3]) should return False
 """
 
+current_list = []
+def values_greater_than_second(current_list):
+    new_list = []
+    if len(current_list) > 2:
+        for i in range(len(current_list)):
+            if i > current_list[1]:
+                new_list.append(i)
+        print(len(new_list))
+        return new_list
+    else:
+        return False
+print(values_greater_than_second([5,2,3,2,1,4]))
+print(values_greater_than_second([3]))
+
 """
-5: This Length, That Value - Write a function that accepts two integers as parameters: size and value. The function should create and return a list whose length is equal to the given size, and whose values are all the given value.
+5: This Length, That Value - Write a function that accepts two integers as parameters: size and value. The function should create and return a list whose 
+length is equal to the given size, and whose values are all the given value.
 Example: length_and_value(4,7) should return [7,7,7,7]
 Example: length_and_value(6,2) should return [2,2,2,2,2,2]
 """
+
+def length_and_value(size, value):
+    new_list = [value] * size
+    return new_list
+print(length_and_value(4,7))
+print(length_and_value(6,2))
