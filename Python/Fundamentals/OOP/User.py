@@ -1,10 +1,8 @@
 class User:
-    bank_name = "First National Dojo"
-    def __init__(self, name, email_address):
+    def __init__(self, name):
         self.name = name
-        self.email = email_address
         self.account_balance = 0
-    
+
     def make_deposit(self, amount):
         self.account_balance += amount
 
@@ -17,13 +15,15 @@ class User:
         print(f"User: {username} , Balance: {balance}")
 
     def transfer_money(self, other_user, amount):
-        owner = self.name
-        receiver = other_user
-        
+        self.account_balance -= amount
+        other_user.account_balance += amount
+        self.display_user_balance()
+        other_user.display_user_balance()
 
-guido = User("Guido van Rossum", "guido@python.com")
-monty = User("Monty Pythong", "monty@python.com")
-geralt = User("Geralt of Rivia", "whitewolf@python.com")
+
+guido = User("Guido van Rossum")
+monty = User("Monty Pythong")
+geralt = User("Geralt of Rivia")
 
 guido.make_deposit(20)
 guido.make_deposit(50)
@@ -42,3 +42,5 @@ geralt.make_withdrawal(5)
 geralt.make_withdrawal(18)
 geralt.make_withdrawal(10)
 geralt.display_user_balance()
+
+guido.transfer_money(geralt, 14)
