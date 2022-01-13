@@ -1,11 +1,11 @@
 class BankAccount:
-    accounts = 0
+    accounts = []
     int_rate = 0.04
     balance = 0
     def __init__(self, int_rate, balance):
         self.int_rate = int_rate
         self.balance = balance
-        BankAccount.accounts +=1
+        BankAccount.accounts.append(self)
 
     def deposit(self, amount):
         self.balance += amount
@@ -30,7 +30,10 @@ class BankAccount:
 
     @classmethod
     def all_accounts(cls):
-        print(f"{cls.accounts} accounts activated")
+        #print(f"{cls.accounts} accounts activated")
+        #display all accounts info
+        for account in cls.accounts:
+            account.display_account_info()
 
 ciri = BankAccount(0.03, 0)
 geralt = BankAccount(0.05, 1000)
