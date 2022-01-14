@@ -43,3 +43,44 @@ print(monty.account_balance) # output: 50
 # print(guido.bank_name) # output: Bank of Dojo
 # print(monty.bank_name) # output: Bank of Dojo
 
+"""
+4 Pillars of OOP
+"""
+
+# 1. Encapsulation - Group code together into objects, hence Object Oriented Programming; Use classes or "coding blueprints" 
+# to define what our objects are and how they behave. Encapsulate attributes and methods in our class
+
+class CoffeM:
+    def __init__(self, name):
+        self.name = name
+        self.water_temp = 200
+    def brew_now(self, beans):
+        print(f"Using {beans}!")
+        print("Brew now brown cow!")
+    def clean(self):
+        print("Cleaning!")
+
+# 2. Inheritance - Pass along attributes and methods from one class into a "sub-class" or child class and not have to re-write the code.
+# Child classes can be more specific; using "super" will call methods
+
+class CappucinoM(CoffeM):
+    def __init__(self, name):
+        super().__init__(name)
+        self.milk = "whole"
+    def make_cappuccino(self, beans):
+        super.brew_now(beans)
+        print("Frothy!!!")
+# 3. Polymorphism - "Many forms" and the idea that a child class can have a different version of a method than the parent class
+# This example, child class has a clean method and so does parent. Depending on class, clean method will do different things
+    def clean(self):
+        print("Cleaning the froth!")
+
+# 4. Abstraction - Extension of Encapsulation and we can hide attributes or methods that a Barista doesn't need to know about, like CoffeeM.
+# The way the Barista can make a cup of coffee in a simpler manner
+
+class Barista:
+    def __init__(self, name):
+        self.name = name
+        self.cafe = CoffeM("Cafe")
+    def make_coffee(self):
+        self.cafe.brew_now()
