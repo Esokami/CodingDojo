@@ -19,7 +19,8 @@ USE `books_schema` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `books_schema`.`authors` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
+  `first_name` VARCHAR(255) NULL,
+  `last_name` VARCHAR(255) NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))

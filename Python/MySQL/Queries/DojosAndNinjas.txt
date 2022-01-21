@@ -1,0 +1,39 @@
+USE dojos_and_ninjas_schema;
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ("Cat", "2020-01-18", "2020-01-20"),
+("Wolf", "2020-01-18", "2020-01-20"),
+("Viper", "2020-01-18", "2020-01-20");
+
+DELETE FROM dojos 
+WHERE dojos.id BETWEEN 1 AND 3;
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ("Phoenix", "2020-01-18", "2020-01-20"),
+("Dragon", "2020-01-18", "2020-01-20"),
+("Tiger", "2020-01-18", "2020-01-20");
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id)
+VALUES ("Yuji", "Itadori", 15, 4),
+("Megumi", "Fushiguro", 15, 4),
+("Nobara", "Kugisaki", 16, 4);
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id)
+VALUES ("Maki", "Zenin", 16, 5),
+("Toge", "Inumaki", 17, 5),
+("Panda", "Yaga", 16, 5);
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id)
+VALUES ("Satoru", "Gojo", 28, 6),
+("Utahime", "Iori", 31, 6),
+("Kento", "Nanami", 28, 6);
+
+SELECT first_name, last_name FROM ninjas
+WHERE dojo_id = 4;
+
+SELECT first_name, last_name FROM ninjas
+WHERE dojo_id = 6;
+
+SELECT name AS dojo_name FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE ninjas.id = 12;
