@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/style.css')}}">
+    <title>Checkerboard</title>
+</head>
+<body>
+    <div><h1>Checkerboard</h1></div>
+    <div class="grid">
+        <table>
+            {% for i in range(4): %}
+            <tr>
+                {% for x in range(4): %}
+                <th class="black_box"></th>
+                <th class="white_box"></th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for x in range(4): %}
+                <th class="white_box"></th>
+                <th class="black_box"></th>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
