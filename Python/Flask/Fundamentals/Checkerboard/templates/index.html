@@ -11,17 +11,17 @@
     <div><h1>Checkerboard</h1></div>
     <div class="grid">
         <table>
-            {% for i in range(4): %}
+            {% for i in range(0, number, 2): %}
             <tr>
-                {% for x in range(4): %}
-                <th class="black_box"></th>
-                <th class="white_box"></th>
+                {% for x in range(0, number, 2): %}
+                <th class="color_1" style="background-color: {{color_1}};"></th>
+                <th class="color_2" style="background-color: {{color_2}};"></th>
                 {% endfor %}
             </tr>
             <tr>
-                {% for x in range(4): %}
-                <th class="white_box"></th>
-                <th class="black_box"></th>
+                {% for x in range(0, num2, 2): %}
+                <th class="color_2" style="background-color: {{color_2}};"></th>
+                <th class="color_1" style="background-color: {{color_1}};"></th>
                 {% endfor %}
             </tr>
             {% endfor %}
