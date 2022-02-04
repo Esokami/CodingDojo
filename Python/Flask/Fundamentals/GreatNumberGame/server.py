@@ -20,8 +20,7 @@ def user_guess():
 
 @app.route("/reset", methods=["POST"])
 def reset():
-    session.pop("random_int")
-    session.pop("userguess")
+    session.clear()
     return redirect("/")
 
 if __name__=="__main__":
