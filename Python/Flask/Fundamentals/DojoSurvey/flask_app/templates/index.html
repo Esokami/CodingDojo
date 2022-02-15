@@ -10,14 +10,21 @@
 <body>
     <div class="container-lg bg-dark d-flex flex-column w-75">
         <h1 class="text-info bg-dark align-self-center">Dojo Survey</h1>
-        <form class="align-self-center d-flex flex-column mb-3 text-light w-50" action="/process" method="POST">
+        <form class="align-self-center d-flex flex-column mb-3 text-light w-50" action="/create" method="POST">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <div class="p-2 d-flex justify-content-between" >
-                <label for="user_ name">Your Name:</label>
-                <input type="text" name="user_name">
+                <label for="name">Your Name:</label>
+                <input type="text" name="name">
             </div>
             <div class="p-2 d-flex justify-content-between">
-                <label  for="dojo_ location">Dojo Location:</label>
-                <select name="dojo_location" id="dojo_location">
+                <label  for="location">Dojo Location:</label>
+                <select name="location" id="location">
                     <option value="">--Select a location--</option>
                     <option value="bellevue">Bellevue, WA</option>
                     <option value="boise">Boise, ID</option>
@@ -27,8 +34,8 @@
                 </select>
             </div>
             <div class="p-2 d-flex justify-content-between" >
-                <label for="fav_language">Favorite Language:</label>
-                <select name="fav_language" id="fav_language">
+                <label for="language">Favorite Language:</label>
+                <select name="language" id="language">
                     <option value="">--Select a language--</option>
                     <option value="python">Python</option>
                     <option value="java">Java</option>
@@ -36,7 +43,7 @@
                 </select>
             </div>
             <div class="p-2 d-flex flex-column">
-                <label  for="comment">Comment (optional):</label>
+                <label  for="comment">Comments:</label>
                 <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
             </div>
             <div class="p-2 d-flex justify-content-end">

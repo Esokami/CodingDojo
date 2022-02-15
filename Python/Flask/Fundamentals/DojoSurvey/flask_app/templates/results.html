@@ -15,24 +15,26 @@
                     <th><h2 class="text-warning">Submitted Info</h2></th>
                 </tr>
             </thead>
+            {% for dojo in all_dojos%}
             <tbody>
                 <tr>
                     <th>Name:</th>
-                    <td>{{session["username"] | title}}</td>
+                    <td>{{dojo["name"]  | title }}</td>
                 </tr>
                 <tr>
                     <th>Dojo Location:</th>
-                    <td>{{session["userlocation"] | title}}</td>
+                    <td>{{dojo["location"]  | title }}</td>
                 </tr>
                 <tr>
                     <th>Favorite Language:</th>
-                    <td>{{session["userlanguage"] | title}}</td>
+                    <td>{{dojo["language"]  | title }}</td>
                 </tr>
                 <tr>
                     <th>Comment:</th>
-                    <td>{{session["usercomment"] | title}}</td>
+                    <td>{{dojo["comment"]  | title}}</td>
                 </tr>
             </tbody>
+            {% endfor %}
         </table>
         <form action="/">
             <button type="submit" class="btn btn-warning">Go Back</button>
