@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        {% for one_tweet in all_the_tweets %}
+            <h6>{{ one_tweet.creator.name }}</h6> 
+            <a href="/profile/{{ one_tweet.creator.id }}">@{{ one_tweet.creator.handle }}</a>
+            <p>{{ one_tweet.content }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+<!-- # Does not use connecting word "account", as a BankAccount does not have a name, only a User.
+self.name 
+# -----------------------
+# Uses connecting word "account" to refer to the balance the User has in their associated BankAccount. Also, a User does not have a balance attribute, only a BankAccount does.
+self.account.balance  -->
+
+<!-- # In this example, we are using a Tweet's id to go to what is intended to be a User's profile page. Errors are at a high risk, and the chance is low that a link will actually go to the expected User profile.
+<a href="/profile/{{ one_tweet.id }}">...</a> 
+# -----------------------
+# This time, we are using the User's id (specifically, the User that created the Tweet) to link to a User's profile page, this makes much more sense. The class of the information used (a User's id) matches the end destination (a User's page).
+<a href="/profile/{{ one_tweet.creator.id }}">...</a>  -->
