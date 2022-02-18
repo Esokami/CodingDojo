@@ -1,5 +1,6 @@
 from flask import flash
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import message
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -13,6 +14,7 @@ class User:
         self.password = db["password"]
         self.created_at = db["created_at"]
         self.updated_at = db["updated_at"]
+        self.messages = []
 
     @classmethod
     def get_all_users(cls):
