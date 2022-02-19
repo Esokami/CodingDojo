@@ -2,7 +2,7 @@ from flask import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import user
 
-class Message():
+class Message:
     def __init__(self, data):
         self.id = data["id"]
         self.message = data["message"]
