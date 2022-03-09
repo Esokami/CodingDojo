@@ -45,5 +45,12 @@ public class StringDemo {
         String h = new String("Dojo");
         System.out.println(h == "Dojo"); // will show false
         System.out.println(h.equals("Dojo")); // will show true
+
+        // CALLING METHODS
+        // DEPENDENCY INJECTION
+        MethodsFile greeterApp = new MethodsFile();
+
+        String dateMessage = greeterApp.getCurrentDate();
+        System.out.println(dateMessage);
     }
 }
