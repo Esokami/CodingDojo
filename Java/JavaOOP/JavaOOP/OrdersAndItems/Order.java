@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Order {
     // Member variables
     private String name;
-    // private double total;
     private boolean ready;
     private ArrayList<Item>items;
 
@@ -27,26 +26,31 @@ public class Order {
         this.items.add(currentItem);
     }
 
-    public String getStatusMessage(String message){
+    public String getStatusMessage(){
         if (ready){
-            message = "Your order is ready.";
+            return "Your order is ready.";
         }
         else{
-            message = "Thank you for waiting. Your order will be ready soon.";
+            return "Thank you for waiting. Your order will be ready soon.";
         }
-        return message;
     }
 
-    public double getOrderTotal(double[] prices){
+    public double getOrderTotal(){
         double total = 0.0;
+
+        for (Item i: items){
+            total += i.getItemPrice();
+        }
+
         return total;
     }
 
-    public void display(ArrayList<String> customerOrder){
-        for (int i = 0; i < customerOrder.size(); i++){
-            System.out.printf("Customer Name: %s\n", name);
-            System.out.printf("%s - $" + items.get(1), items.get(0));
+    public void display(){
+        System.out.printf("Customer Name: %s\n", name);
+        for (Item i: items){
+            System.out.printf("%s - " + "$%s \n", i.getItemName(), i.getItemPrice());
         }
+        System.out.printf("Total: %s\n", this.getOrderTotal());
     }
 
     // Getters and setters
@@ -66,5 +70,12 @@ public class Order {
         ready = orderStatus;
     }
 
+    public ArrayList<Item> getItems(){
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> orderItems){
+        items = orderItems;
+    }
     
 }
