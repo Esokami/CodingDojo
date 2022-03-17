@@ -1,13 +1,13 @@
 class Barista {
-    private String name;
-    private CoffeeMaker;
+    // private String name;
+    // private CoffeeMaker;
 
-    public Barista(String name){
-        this.name = name;
-        this.cafe = new CoffeeMaker(40);
-    }
+    // public Barista(String name){
+    //     this.name = name;
+    //     this.cafe = new CoffeeMaker(40);
+    // }
     
-    public void makeCoffee(){
-        this.cafe.brew();
-    }
+    // public void makeCoffee(){
+    //     this.cafe.brew();
+    // }
 }
