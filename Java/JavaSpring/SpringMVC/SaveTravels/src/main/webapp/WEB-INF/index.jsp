@@ -30,14 +30,22 @@
 						<th scope="col">Expense</th>
 						<th scope="col">Vendor</th>
 						<th scope="col">Amount</th>
+						<th scope="col" colspan="2">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="oneExpense" items="${expenses}">
 					<tr>
-						<td><c:out value="${oneExpense.name}"></c:out></td>
+						<td><a href="/expenses/${oneExpense.id}"><c:out value="${oneExpense.name}"></c:out></a></td>
 						<td><c:out value="${oneExpense.vendor}"></c:out></td>
-						<td><c:out value="${oneExpense.amount}"></c:out></td>
+						<td>$<c:out value="${oneExpense.amount}"></c:out></td>
+						<td><a href="/expenses/edit/${oneExpense.id}">edit</a></td>
+						<td>
+							<form action="/expenses/${oneExpense.id}" method="POST">
+							<input type="hidden" name="_method" value="delete">
+							<button class="btn btn-danger" type="submit">delete</button>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -45,8 +53,8 @@
 		</div>
 	</div>
 	<div class="m-5 p-3 bg-dark text-light w-75 rounded">
-		<h2 class="text-warning">Add an expense:</h2>
-		<form:form class="d-flex flex-column align-items-center" action="/newExpense" method="POST" modelAttribute="expense">
+		<h2 class="text-success">Add an expense:</h2>
+		<form:form class="d-flex flex-column align-items-center" action="/expenses" method="POST" modelAttribute="expense">
 			<div class="d-flex flex-column w-50">
 				<form:label path="name">Expense Name:</form:label>
 				<form:errors path="name" class="text-danger"/>
@@ -67,7 +75,7 @@
 				<form:errors path="description" class="text-danger"/>
 				<form:textarea path="description" rows="2" cols="50"></form:textarea>
 			</div>
-			<button type="submit">Submit</button>
+			<button class="btn btn-success mt-2" type="submit">Submit</button>
 		</form:form>
 	</div>
 </body>
