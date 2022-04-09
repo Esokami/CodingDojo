@@ -1,5 +1,7 @@
 package com.codingdojo.loginandregistration.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.codingdojo.loginandregistration.models.Book;
 import com.codingdojo.loginandregistration.models.LoginUser;
 import com.codingdojo.loginandregistration.models.User;
+import com.codingdojo.loginandregistration.services.BookService;
 import com.codingdojo.loginandregistration.services.UserService;
 
 @Controller
@@ -20,6 +24,8 @@ public class MainController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BookService bookService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -35,6 +41,9 @@ public class MainController {
 		if (session.getAttribute("id") == null) {
 			return "redirect:/logout";
 		}
+		
+		List<Book> books = bookService.allBooks();
+		model.addAttribute("books", books);
 		
 		Long id = (Long) session.getAttribute("id");
 		model.addAttribute("user", userService.findById(id));

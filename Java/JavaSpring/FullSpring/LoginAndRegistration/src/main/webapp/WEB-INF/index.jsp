@@ -22,10 +22,11 @@
 <title>Login/Register</title>
 </head>
 <body class="bg-secondary">
- <div class="container d-flex flex-column align-items-left text-light bg-dark w-50">
- 		<h1>Welcome!</h1>
- 		<h2>Join our growing community!</h2>
-        <div class="bg-dark d-flex flex-column align-items-left text-info">
+ <div class="container d-flex flex-column align-items-left text-light bg-dark">
+ 		<h1 class="text-primary">Book Club</h1>
+ 		<h5>A place for friends to share thoughts on books</h5>
+		<div class="container d-flex flex-row">
+		    <div class="bg-dark d-flex flex-column align-items-center text-info w-50">
             <h1>Register</h1>
             <form:form class="d-flex flex-column mb-3 text-light" action="/register" method="POST" modelAttribute="newUser">
                 <div class="p-2 d-flex justify-content-between">
@@ -51,7 +52,7 @@
                 <button type="submit" class="btn btn-info">Register</button>
             </form:form>
         </div>
-        <div class="bg-dark d-flex flex-column align-items-left text-success">
+        <div class="bg-dark d-flex flex-column align-items-center text-success w-50">
             <h1>Login</h1>
             <form:form class="d-flex flex-column mb-3 text-light" action="/login" method="POST" modelAttribute="newLogin">
                 <div class="p-2 d-flex justify-content-between">
@@ -67,6 +68,7 @@
                 <button type="submit" class="btn btn-success">Login</button>
             </form:form>
         </div>
+		</div>
     </div>
 </body>
 </html>

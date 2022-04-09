@@ -16,29 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `books`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
+CREATE TABLE `books` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(128) DEFAULT NULL,
-  `username` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `author` varchar(40) NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `thoughts` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKcykkh3hxh89ammmwch0gw5o1s` (`user_id`),
+  CONSTRAINT `FKcykkh3hxh89ammmwch0gw5o1s` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `books`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'test@email.com','$2a$10$MhL72dIuFyt1kL7/UOuz2efswybVknkhTkzmFHFclkP4cmVtfojEu','Test'),(2,'test1@email.com','$2a$10$tUynfelYG9D2oUy352kiPOqhQ7e.wD3Hb0/ryuilrnR43tnOwYyB6','test1'),(3,'whitewolf@witcher.com','$2a$10$mcT3CgaDC0xDymxThdhoK.ylY95kUEDY2Yp/yxql.uSdDQW1fvQ2S','Geralt'),(4,'cirilla@witcher.com','$2a$10$XhGP82nEpH06FQUjUy3BN.xUyiJtJ0HALuD0wv2ydFlBNQk.Ce6Tm','Ciri');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (2,'NK Jemisin',NULL,'I have no thoughts','The Fifth Season',NULL,4),(3,'James SA Corey',NULL,'Hmm, yes, very interesting','Leviathan Wakes',NULL,3);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
