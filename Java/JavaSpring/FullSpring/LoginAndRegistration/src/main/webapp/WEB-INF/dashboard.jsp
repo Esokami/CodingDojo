@@ -19,7 +19,7 @@
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-<title>Dashboard</title>
+<title>Book Broker</title>
 </head>
 <body class="bg-secondary">
 	<div class="container d-flex flex-column align-items-left text-light bg-dark p-3">
@@ -29,10 +29,9 @@
 				<a href="/logout">Logout</a>
 			</div>
 			<div class="d-flex justify-content-between">
-				<h5>Books from everyone's shelves:</h5>
+				<h5>Available Books to Borrow:</h5>
 				<a href="/dashboard/new">+Add a book to my shelf</a>
 			</div>
-
 			<div>
 			<table class="table table-hover table-dark">
 				<thead>
@@ -40,16 +39,50 @@
 						<th scope="col">ID</th>
 						<th scope="col">Title</th>
 						<th scope="col">Author</th>
-						<th scope="col">Posted By</th>
+						<th scope="col">Owner</th>
+						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="oneBook" items="${books}">
 					<tr>
 						<td><c:out value="${oneBook.id}"></c:out></td>
-						<td class="w-50"><a href="/dashboard/${oneBook.id}"><c:out value="${oneBook.title}"></c:out></a></td>
+						<td><a href="/dashboard/${oneBook.id}"><c:out value="${oneBook.title}"></c:out></a></td>
 						<td><c:out value="${oneBook.author}"></c:out></td>
 						<td><c:out value="${oneBook.user.username}"></c:out></td>
+						<c:if test="${oneBook.user.id == user.id}">
+							<td><a href="/dashboard/edit/${oneBook.id}">Edit</a>
+							<a href="/dashboard/delete/${oneBook.id}">Delete</a>
+							</td>
+						</c:if>
+						<c:if test="${oneBook.user.id != user.id}">
+							<td><a href="/dashboard/borrow/${oneBook.id}">Borrow</a></td>
+						</c:if>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</div>
+			<div>
+			<h5>Books I'm Borrowing...</h5>
+			<table class="table table-hover table-dark">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Title</th>
+						<th scope="col">Author</th>
+						<th scope="col">Owner</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="oneBook" items="${userBooks}">
+					<tr>
+						<td><c:out value="${oneBook.id}"></c:out></td>
+						<td><a href="/dashboard/${oneBook.id}"><c:out value="${oneBook.title}"></c:out></a></td>
+						<td><c:out value="${oneBook.author}"></c:out></td>
+						<td><c:out value="${oneBook.user.username}"></c:out></td>
+						<td><a href="/dashboard/return/${oneBook.id}">Return</a></td>
 					</tr>
 					</c:forEach>
 				</tbody>

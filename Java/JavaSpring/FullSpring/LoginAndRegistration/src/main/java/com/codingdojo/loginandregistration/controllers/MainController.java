@@ -42,10 +42,13 @@ public class MainController {
 			return "redirect:/logout";
 		}
 		
-		List<Book> books = bookService.allBooks();
+		Long id = (Long) session.getAttribute("id");
+		List<Book> userBooks = bookService.borrowedBooks(userService.findById(id));
+		model.addAttribute("userBooks", userBooks);
+		
+		List<Book> books = bookService.unborrowedBooks(userService.findById(id));
 		model.addAttribute("books", books);
 		
-		Long id = (Long) session.getAttribute("id");
 		model.addAttribute("user", userService.findById(id));
 		
 		return "dashboard.jsp";

@@ -21,31 +21,34 @@
 
 <title>Edit Book</title>
 </head>
-<body>
-	<h1>Edit Book</h1>
-	<form:form action="/books/edit/${book.id}" method="post" modelAttribute="book">
-    	<input type="hidden" name="_method" value="put">
-    	<p>
-        	<form:label path="title">Title</form:label>
-        	<form:errors path="title"/>
-        	<form:input path="title"/>
-    	</p>
-    	<p>
-        	<form:label path="description">Description</form:label>
-        	<form:errors path="description"/>
-        	<form:textarea path="description"/>
-    	</p>
-    	<p>
-        	<form:label path="language">Language</form:label>
-        	<form:errors path="language"/>
-        	<form:input path="language"/>
-    	</p>
-    	<p>
-        	<form:label path="numberOfPages">Pages</form:label>
-        	<form:errors path="numberOfPages"/>     
-        	<form:input type="number" path="numberOfPages"/>
-    	</p>    
-    	<input type="submit" value="Submit"/>
-	</form:form>
+<body class="bg-secondary">
+	<div class="bg-dark text-light m-5 p-3 border border-dark w-75">
+		<div class="d-flex justify-content-between">
+			<h1 class="text-warning">Change Your Entry</h1>
+			<a href="/dashboard">Back to the Shelves</a>
+		</div>
+		<form:form action="/dashboard/edit/${book.id}" method="POST" modelAttribute="book">
+    		<input type="hidden" name="_method" value="put">
+    		<form:input type="hidden" name="user" path="user"/>
+    		<form:input type="hidden" name="borrower" path="borrower"/>
+				<div class="p-2 d-flex flex-column justify-content-between">
+					<form:label path="title">Title</form:label>
+					<form:errors path="title" class="text-danger"/>
+					<form:input path="title"/>
+				</div>
+				<div class="p-2 d-flex flex-column justify-content-between">
+					<form:label path="author">Author</form:label>
+					<form:errors path="author" class="text-danger"/>
+					<form:input path="author"/>
+				</div>
+				<div class="p-2 d-flex flex-column justify-content-between">
+					<form:label path="thoughts">My Thoughts</form:label>
+					<form:errors path="thoughts" class="text-danger"/>
+					<form:textarea path="thoughts" rows="2" cols="50"></form:textarea>
+				</div> 
+    		<button class="btn btn-success w-25 align-self-end" type="submit">Submit</button>
+		</form:form>
+		<a href="/dashboard/delete/${book.id}">Delete</a>
+	</div>
 </body>
 </html>

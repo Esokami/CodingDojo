@@ -1,6 +1,7 @@
 package com.codingdojo.loginandregistration.controllers;
 
 import javax.servlet.http.HttpSession;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.codingdojo.loginandregistration.models.Book;
 import com.codingdojo.loginandregistration.models.User;
@@ -60,8 +62,8 @@ public class BookController {
 	}
 	
 	
-	@GetMapping("/dashboard/edit/{bookId}")
-	public String editBook(@PathVariable("bookId") Long bookId,
+	@GetMapping("/dashboard/edit/{id}")
+	public String editBook(@PathVariable("id") Long id,
 			Model model,
 			HttpSession session) {
 		
@@ -69,9 +71,65 @@ public class BookController {
 			return "redirect:/";
 		}
 		
-		Book book = bookService.findBook(bookId);
+		Book book = this.bookService.findBook(id);
 		model.addAttribute("book", book);
 		return "book_edit.jsp";
+	}
+	
+	@PutMapping("/dashboard/edit/{id}")
+	public String updateBook(
+			@PathVariable("id") Long id,
+			@Valid @ModelAttribute("book") Book book, 
+			BindingResult result,
+			HttpSession session) {
+		
+		if(session.getAttribute("id") == null) {
+			return "redirect:/logout";
+		}
+		
+		if (result.hasErrors()) {
+			return "book_edit.jsp";
+		}
+		else {
+			bookService.updateBook(book);
+			return "redirect:/dashboard";
+		}
+	}
+	
+	@RequestMapping("/dashboard/delete/{bookId}")
+	public String deleteBook(@PathVariable("bookId") Long bookId,
+			HttpSession session) {
+		if (session.getAttribute("id")==null) {
+			return "redirect:/logout";
+		}
+		
+		bookService.deleteBook(bookService.findBook(bookId));
+		return "redirect:/dashboard";
+	}
+	
+	@RequestMapping("/dashboard/borrow/{bookId}")
+	public String borrowBook(@PathVariable("bookId") Long bookId,
+			HttpSession session)
+	{
+		Long id = (Long) session.getAttribute("id");
+		if(id == null) {
+			return "redirect:/logout";
+		}
+		
+		bookService.addBorrower(bookService.findBook(bookId), userService.findById(id));
+		return "redirect:/dashboard";
+	}
+	
+	@RequestMapping("/dashboard/return/{bookId}")
+	public String returnBook(@PathVariable("bookId") Long bookId,
+			HttpSession session)
+	{
+		if(session.getAttribute("id") == null) {
+			return "redirect:/logout";
+		}
+		
+		bookService.removeBorrower(bookService.findBook(bookId));
+		return "redirect:/dashboard";
 	}
 	
 	//***POST MAPPINGS***
@@ -89,18 +147,4 @@ public class BookController {
 		
 	}
 	
-	@PutMapping("/dashboard/edit/{bookId}")
-	public String updateBook(
-			@PathVariable("bookId") Long bookId,
-			Model model,
-			@Valid @ModelAttribute("book") Book book, 
-			BindingResult result) {
-		if (result.hasErrors()) {
-			return "redirect:/dashboard/edit/{bookId}";
-		}
-		else {
-			bookService.updateBook(book);
-			return "redirect:/dashboard";
-		}
-	}
 }

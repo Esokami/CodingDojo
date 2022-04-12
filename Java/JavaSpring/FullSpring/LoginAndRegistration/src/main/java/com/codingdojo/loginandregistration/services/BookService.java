@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.loginandregistration.models.Book;
+import com.codingdojo.loginandregistration.models.User;
 import com.codingdojo.loginandregistration.repositories.BookRepository;
 
 @Service
@@ -37,7 +38,40 @@ public class BookService {
 		}
 	}
 	
+	// updates book
 	public Book updateBook(Book b) {
 		return bookRepository.save(b);
+	}
+	
+	// deletes book
+	public void deleteBook(Book book) {
+		bookRepository.delete(book);
+	}
+	
+	// user books
+	public List<Book> usersBooks(User user){
+		return bookRepository.findByUserId(user.getId());
+	}
+	
+	// unborrowed books
+	public List<Book> unborrowedBooks(User user){
+		return bookRepository.findByBorrowerOrUserId(null, user.getId());
+	}
+	
+	// borrowed books
+	public List<Book> borrowedBooks(User user){
+		return bookRepository.findByBorrowerId(user.getId());
+	}
+	
+	// add borrower
+	public void addBorrower(Book book, User user) {
+		book.setBorrower(user);
+		bookRepository.save(book);
+	}
+	
+	// remove borrower
+	public void removeBorrower(Book book) {
+		book.setBorrower(null);
+		bookRepository.save(book);
 	}
 }

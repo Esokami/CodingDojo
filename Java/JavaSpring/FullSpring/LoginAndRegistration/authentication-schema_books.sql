@@ -29,11 +29,14 @@ CREATE TABLE `books` (
   `thoughts` varchar(200) NOT NULL,
   `title` varchar(200) NOT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
+  `borrower_id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FKdcwwdxoep0xr94168ct70uogf` (`borrower_id`),
   KEY `FKcykkh3hxh89ammmwch0gw5o1s` (`user_id`),
-  CONSTRAINT `FKcykkh3hxh89ammmwch0gw5o1s` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `FKcykkh3hxh89ammmwch0gw5o1s` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKdcwwdxoep0xr94168ct70uogf` FOREIGN KEY (`borrower_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +45,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (2,'NK Jemisin',NULL,'I have no thoughts','The Fifth Season',NULL,4),(3,'James SA Corey',NULL,'Hmm, yes, very interesting','Leviathan Wakes',NULL,3);
+INSERT INTO `books` VALUES (1,'James SA Corey',NULL,'Mm, yes. Very interesting','Leviathan Wakes',NULL,NULL,1),(2,'Ta-Nehisi Coates',NULL,'Beautiful, really','Water Dancer',NULL,NULL,2),(3,'Kurt Vonnegut ',NULL,'A familiar story','Mother Night',NULL,1,3);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-08 20:20:51
+-- Dump completed on 2022-04-11 21:51:14

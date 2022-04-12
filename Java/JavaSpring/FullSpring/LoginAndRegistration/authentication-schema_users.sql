@@ -28,7 +28,7 @@ CREATE TABLE `users` (
   `password` varchar(128) DEFAULT NULL,
   `username` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'test@email.com','$2a$10$MhL72dIuFyt1kL7/UOuz2efswybVknkhTkzmFHFclkP4cmVtfojEu','Test'),(2,'test1@email.com','$2a$10$tUynfelYG9D2oUy352kiPOqhQ7e.wD3Hb0/ryuilrnR43tnOwYyB6','test1'),(3,'whitewolf@witcher.com','$2a$10$mcT3CgaDC0xDymxThdhoK.ylY95kUEDY2Yp/yxql.uSdDQW1fvQ2S','Geralt'),(4,'cirilla@witcher.com','$2a$10$XhGP82nEpH06FQUjUy3BN.xUyiJtJ0HALuD0wv2ydFlBNQk.Ce6Tm','Ciri');
+INSERT INTO `users` VALUES (1,'geralt@witcher.com','$2a$10$UdSyEmv5UFVXLHJbrlted.QA.vFBxBMksTbeNa.DqjgIEbUk0qOFW','Geralt'),(2,'cirilla@witcher.com','$2a$10$k.acc8zZ2sdICuQOwU7C8.125TLTV7qT70LFJjr1oP9f3PevblN5m','Ciri'),(3,'yennefer@witcher.com','$2a$10$djwN4KZ/59giwQcf1Wv.8eq22k/d2EQNOAet49KvavDZUZQB6DpkK','Yennefer');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-08 20:20:51
+-- Dump completed on 2022-04-11 21:51:14
