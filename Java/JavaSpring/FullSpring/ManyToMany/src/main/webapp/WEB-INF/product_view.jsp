@@ -21,16 +21,30 @@
 
 <title>View Product</title>
 </head>
-<body class="bg-secondary">
-	<div class="bg-dark text-light m-5 p-3 border border-dark">
-		<div class="d-flex justify-content-between">
-			<h1 class="text-warning"><c:out value="${book.title}"/></h1>
-			<a href="/dashboard">Back to the Shelves</a>
-		</div>
+<body class="bg-danger">
+	<div class="bg-dark text-light m-5 p-3 border border-dark rounded">
 		<div class="d-flex flex-column">
-			<h4><span class="text-danger"><c:out value="${book.user.username}"/></span> read <span class="text-warning"><c:out value="${book.title}"/></span> by <span class="text-success"><c:out value="${book.author}"/></span></h4>
-			<h5>Here are <span class="text-danger"><c:out value="${book.user.username}"/>'s</span> thoughts:</h5>
-			<p class="fst-italic"><c:out value="${book.thoughts}"/></p>
+			<h1 class="text-danger text-center"><c:out value="${product.name}"/></h1>
+			<a href="/">Home</a>
+		</div>
+		<div class="d-flex flex-column border-top border-light mt-2">
+			<h4 class="text-info mt-2">Categories</h4>
+			<ul>
+			<c:forEach var="category" items="${usedCategories}">
+				<li><c:out value="${category.name}"></c:out></li>
+			</c:forEach>
+			</ul>
+		</div>
+		<div class="border-top border-light mt-2">
+			<h4 class="text-success mt-2">Add Category:</h4>
+			<form:form class="d-flex flex-column mb-3 text-light" action="/products/${id}" method="POST">
+				<select name="categoryId" id="categoryId" class="input w-25">
+					<c:forEach var="category" items="${unusedCategories}">
+						<option value="${category.id}">${category.name}</option>
+					</c:forEach>
+				</select>
+				<button class="btn btn-success w-25 mt-2" type="submit">Add</button>
+			</form:form>
 		</div>
 	</div>
 </body>

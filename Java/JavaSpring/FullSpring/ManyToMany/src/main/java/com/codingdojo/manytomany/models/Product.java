@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,6 +35,8 @@ public class Product {
 	@Size(min = 5, max = 40, message="Description must be at least 5 characters")
 	private String description;
 	
+	@NotNull(message="Must be greater than 0")
+	@Min(value=0)
 	private float price;
 	
 	@Column(updatable=false)
@@ -51,7 +54,13 @@ public class Product {
 	private List<Category> categories;
 	
 	public Product() {
-		super();
+		
+	}
+	
+	public Product(String name, String description, float price) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
 	}
 
 	public Long getId() {

@@ -21,26 +21,30 @@
 
 <title>Login/Register</title>
 </head>
-<body class="bg-secondary">
-	<div class="container p-3 text-light bg-dark">
+<body class="bg-info">
+	<div class="container m-5 p-3 text-light bg-dark rounded">
  		<div>
  			<h1 class="text-primary text-center">Home Page</h1>
  		</div>
- 		<div class="d-flex flex-column">
- 			<a href="#">New Product</a>
- 			<a href="#">New Category</a>
+ 		<div class="d-flex flex-column border-bottom border-light pb-2">
+ 			<a href="/products/new">New Product</a>
+ 			<a href="/categories/new">New Category</a>
  		</div>
-		<div class="container d-flex justify-content-evenly bg-secondary border border-light w-75 my-3">
+		<div class="container d-flex justify-content-evenly bg-light text-dark w-75 my-3">
 			<div class="p-1">
-				<h3>Products</h3>
-				<ul class="p-0 m-0">
-					<li>product 1</li>
+				<h3 class="border-bottom border-dark">Products</h3>
+				<ul class="p-0 m-0 border-right border-dark">
+				<c:forEach var="product" items="${products}">
+					<li><a href="/products/${product.id}"><c:out value="${product.name}"></c:out></a></li>
+				</c:forEach>
 				</ul>
 			</div>
 			<div class="p-1">
-				<h3>Categories</h3>
+				<h3 class="border-bottom border-dark">Categories</h3>
 				<ul class="p-0 m-0">
-					<li>category 1</li>
+				<c:forEach var="category" items="${categories}">
+					<li><a href="/categories/${category.id}"><c:out value="${category.name}"></c:out></a></li>
+				</c:forEach>
 				</ul>
 			</div>
 		</div>

@@ -1,7 +1,6 @@
 package com.codingdojo.manytomany.models;
 
 import java.util.Date;
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -46,7 +45,10 @@ public class Category {
 	private List<Product> products;
 	
 	public Category() {
-		super();
+	}
+	
+	public Category(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {
