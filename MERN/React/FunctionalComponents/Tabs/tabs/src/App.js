@@ -18,9 +18,6 @@ function App() {
       <Tab
         setCurrentTab={setCurrentTab} tabContent={tabContent} currentTab={currentTab}
         />
-        <div className={styles.tab}>
-          <textarea row="6" cols="40">{tabContent[currentTab]}</textarea>
-        </div>
     </div>
   );
 }
