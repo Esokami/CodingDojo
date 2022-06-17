@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 const Detail = (props) => {
     const [product, setProduct] = useState({});
     const { id } = useParams();
-    const {removeFromDom} = props;
-
-    const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8000/api/products/' + productId)
-            .then(res => {
-                removeFromDom(productId)
-            })
-            .catch(err => console.log(err))
-    }
+    const navigate = useNavigate();
 
     useEffect( () => {
         axios.get("http://localhost:8000/api/products/" + id )
@@ -21,16 +16,41 @@ const Detail = (props) => {
                 console.log(res.data);
                 setProduct(res.data);
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err);
+            });
     },);
 
+    const deleteProduct = (productId) => {
+        axios.delete('http://localhost:8000/api/products/' + productId)
+            .then((res) => {
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     return (
-        <div>
-            <p>Title: {product.title}</p>
-            <p>Price: ${product.price}</p>
-            <p>Description: {product.description}</p>
-            <button onClick={(e) => {deleteProduct(product._id)}}>Delete</button>
-        </div>
+        <Container>
+            <Table striped bordered hover>
+                <tbody>
+                    <tr>
+                        <td>Title:</td>
+                        <td>{product.title}</td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td>${product.price}</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>{product.description}</td>
+                    </tr>
+                    <Button variant='danger' onClick={(e) => {deleteProduct(product._id)}}>Delete</Button>
+                </tbody>
+            </Table>
+        </Container>
     )
 }
 
